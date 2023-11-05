@@ -1,48 +1,5 @@
-<div class="max-w-2xl container mx-auto pt-5">
-    <h1 class="font-bold mb-2 text-center text-lg">{{ title | titlecase }}</h1>
-  
-    <input
-      type="text"
-      class="mb-2 border py-2 px-4 w-full"
-      placeholder="Filter documents..."
-      [(ngModel)]="document_number"
-    >
-  
-    <ng-container *ngIf="documents$ | async as documents; else noDocuments">
-      <app-document
-        *ngFor="let document of documents | filterDocuments: document_number"
-        [document]="document"
-      ></app-document>
-    </ng-container>
-  
-    <ng-template #noDocuments>
-      <p class="text-center">No documents</p>
-    </ng-template>
-    <button 
-    class="border py-2 px-4 rounded"
-    [ngClass]="{
-        'bg-white': !new_document_input,
-        'bg-gray-300': new_document_input
-    }"
-    (click)="new_document_input = !new_document_input">
-    Create document
-    </button>
-   
-    <div *ngIf="new_document_input">
-        <div class="border py-2 px-2 rounded">
-            <label for="document_number">Document Number:</label>
-            <input type="text" [(ngModel)]="newDocument.document_number" class="border py-2 px-2 rounded">
-        </div>
-        <div class="border py-2 px-2 rounded">
-            <label for="date">Date:</label>
-            <input type="date" [(ngModel)]="newDocument.date" class="border py-2 px-2 rounded">
-        </div>
-        <div class="border py-2 px-2 rounded">
-            <label for="note">Note:</label>
-            <textarea [(ngModel)]="newDocument.note" class="border py-2 px-2 rounded"></textarea>
-        </div>
-        <!-- <button class="border py-2 px-4 rounded" (click)="createDocument()">Создать</button> -->
-        <button (click)="createDocument()">Создать документ</button>
-    </div>
-  </div>
-  
+<div class="max-w-2xl container mx-auto pt-5 mt-[50px]">
+
+  <router-outlet></router-outlet>
+
+</div>

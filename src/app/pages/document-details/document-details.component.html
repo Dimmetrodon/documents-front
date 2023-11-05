@@ -1,0 +1,76 @@
+<div class="py-4 px-6 border rounded flex flex-col mb-2">
+    <h1 class="font-bold mb-2 text-center text-lg">{{ title | titlecase }}</h1>
+    <h2 class="mb-2 text-md text-left" *ngIf="document"> id: {{ document.id }}</h2>
+    <h2 class="mb-2 text-md text-left" *ngIf="document"> Document number: {{ document.document_number }}</h2>
+    <h2 class="mb-2 text-md text-left" *ngIf="document"> date: {{ document.date }}</h2>
+    <h2 class="mb-2 text-md text-left" *ngIf="document"> sum: {{ document.sum }}</h2>
+    <h2 class="mb-2 text-md text-left" *ngIf="document"> note: {{ document.note }}</h2>
+
+    <button 
+    class="border py-2 px-4 rounded"
+    [ngClass]="{
+        'bg-white': !change_document,
+        'bg-gray-300': change_document
+    }"
+    (click)="change_document = !change_document">
+    Update document
+    </button>
+
+    <div *ngIf="change_document">
+        <div class="border py-2 px-2 rounded">
+            <label for="document_number">Document Number:</label>
+            <input type="text" [(ngModel)]="newDocument.document_number" class="border py-2 px-2 rounded">
+        </div>
+        <div >
+            <label for="date">Date:</label>
+            <input type="date" [(ngModel)]="newDocument.date" class="border py-2 px-2 rounded">
+        </div>
+        <div class="border py-2 px-2 rounded">
+            <label for="note">Note:</label>
+            <textarea [(ngModel)]="newDocument.note" class="border py-2 px-2 rounded"></textarea>
+        </div>
+        <button class="border py-2 px-2 rounded"(click)="updateDocument()">Change document</button>
+    </div>
+
+    <button 
+    class="border py-2 px-4 rounded"
+    [ngClass]="{
+        'bg-white': !add_position,
+        'bg-gray-300': add_position
+    }"
+    (click)="add_position = !add_position">
+    Add Position
+    </button>
+
+    <div *ngIf="add_position">
+        <div class="border py-2 px-2 rounded">
+            <label for="document_number">Position Number:</label>
+            <input type="text" [(ngModel)]="newPosition.position_number" class="border py-2 px-2 rounded">
+        </div>
+        <div class="border py-2 px-2 rounded">
+            <label for="document_number">Position name:</label>
+            <input type="text" [(ngModel)]="newPosition.name" class="border py-2 px-2 rounded">
+        </div>
+        <div class="border py-2 px-2 rounded">
+            <label for="number">Position sum:</label>
+            <textarea [(ngModel)]="newPosition.sum" class="border py-2 px-2 rounded"></textarea>
+        </div>
+        <button class="border py-2 px-2 rounded"(click)="addPosition()">Add position</button>
+    </div>
+    <button class="border py-2 px-2 rounded"(click)="deleteDocument()">Delete document</button>
+</div>
+
+
+<div class="py-4 px-6 border rounded flex flex-col mb-2">
+<h1 class="font-bold mb-2 text-center text-lg">Positions</h1>
+
+<div class="py-4 px-6 border rounded flex flex-col mb-2">
+    <ng-container *ngIf="positions">
+        <app-position
+          *ngFor="let position of positions"
+          [position]="position"
+        ></app-position>
+      </ng-container>
+</div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="mb-2 text-md text-left py-4 px-6 border rounded flex flex-col">
+    <h2 class="mb-2 text-md text-left"> Position id: {{ position.id }}</h2>
+    <h2 class="mb-2 text-md text-left"> Position number: {{ position.position_number }}</h2>
+    <h2 class="mb-2 text-md text-left"> Position name: {{ position.name }}</h2>
+    <h2 class="mb-2 text-md text-left"> Position sum: {{ position.sum }}</h2>
+
+    <button 
+    class="border py-2 px-4 rounded"
+    [ngClass]="{
+        'bg-white': !updatePositionIdentificator,
+        'bg-gray-300': updatePositionIdentificator
+    }"
+    (click)="updatePositionIdentificator = !updatePositionIdentificator">
+    Update Position
+    </button>
+
+    <div *ngIf="updatePositionIdentificator">
+        <div class="border py-2 px-2 rounded">
+            <label for="document_number">Position Number:</label>
+            <input type="text" [(ngModel)]="updatedPosition.position_number" class="border py-2 px-2 rounded">
+        </div>
+        <div >
+            <label for="date">Position Name:</label>
+            <input type="string" [(ngModel)]="updatedPosition.name" class="border py-2 px-2 rounded">
+        </div>
+        <div class="border py-2 px-2 rounded">
+            <label for="number">Sum:</label>
+            <textarea [(ngModel)]="updatedPosition.sum" class="border py-2 px-2 rounded"></textarea>
+        </div>
+        <button class="border py-2 px-2 rounded"(click)="updatePosition()">Change position</button>
+    </div>    
+    <button class="border py-2 px-2 rounded"(click)="deletePosition()">Delete position</button>
+</div>

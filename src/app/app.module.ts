@@ -7,20 +7,22 @@ import { DocumentComponent } from './components/document/document.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { FilterDocumentsPipe } from './pipes/filter-documents.pipe';
+import { DocumentDetailsComponent } from './pages/document-details/document-details.component';
+import { DocumentsComponent } from './pages/documents/documents.component';
+import { PositionComponent } from './components/position/position.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DocumentComponent,
-    FilterDocumentsPipe
+    DocumentDetailsComponent,
+    FilterDocumentsPipe,
+    DocumentsComponent,
+    DocumentDetailsComponent,
+    PositionComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
